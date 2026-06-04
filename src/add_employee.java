@@ -1,11 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
 
-public class add_employee extends JFrame {
+public class add_employee extends JFrame implements ActionListener {
+    private static final String url = "jdbc:postgresql://localhost:5432/mydb";
+    private static final String username = "postgres";
+    private static final String password = "Rinki12";
     JLabel l1,l2,l3,l4,l5,l6,l7, l8;
     JButton b1, b2;
     JTextField t1, t2, t3, t4, t5, t6;
-
 
     add_employee(){
         super("Add Employee");
@@ -39,7 +44,6 @@ public class add_employee extends JFrame {
         ImageIcon i3 = new ImageIcon(i2);
         l8 = new JLabel(i3);
         l8.setLayout(null);
-
 
         l8.setFont(f);
 
@@ -82,8 +86,33 @@ public class add_employee extends JFrame {
 
         setLayout(new BorderLayout(20,20));
         add(l8, BorderLayout.CENTER);
+        b1.addActionListener(this);
+    }
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == b1){
+            try{
+                Database d = new Database();
+                String query = "Insert Into restaurant(username, age, gender, name, password, aadhar) Values(?, ?, ?, ?, ?, ?)";
 
+                PreparedStatement ps = d.con.prepareStatement(query);
+                ps.setString(1, t1.getText());
+                ps.setInt(2, Integer.parseInt(t2.getText()));
+                ps.setString(3, t3.getText());
+                ps.setString(4, t4.getText());
+                ps.setString(5, t5.getText());
+                ps.setString(6, t6.getText());
 
+                int result = ps.executeUpdate();
+                if(result>0){
+                    JOptionPane.showMessageDialog(null, "Employee Added Successfully");
+                    ps.close();
+                    d.con.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+
+            }
+        }
     }
     public static void main(String[] args) {
         add_employee e = new add_employee();

@@ -61,7 +61,10 @@ public class indexpage extends JFrame implements ActionListener {
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == b1){
-            System.out.println("admin login");
+            admin_login a = new admin_login();
+            a.setVisible(true);
+            a.setSize(500,250);
+            dispose();
         }
         else{
            employee_login emp = new employee_login();

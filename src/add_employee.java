@@ -87,6 +87,7 @@ public class add_employee extends JFrame implements ActionListener {
         setLayout(new BorderLayout(20,20));
         add(l8, BorderLayout.CENTER);
         b1.addActionListener(this);
+        b2.addActionListener(this);
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == b1){
@@ -112,6 +113,12 @@ public class add_employee extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
 
             }
+        }
+        else{
+            admin_login a = new admin_login();
+            a.setVisible(true);
+            a.setSize(500,250);
+            dispose();
         }
     }
     public static void main(String[] args) {

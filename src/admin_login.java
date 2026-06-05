@@ -39,12 +39,19 @@ public class admin_login extends JFrame implements ActionListener {
         add(p2, BorderLayout.WEST);
         add(l2, BorderLayout.CENTER);
         b1.addActionListener(this);
+        b2.addActionListener(this);
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == b1){
             add_employee ae = new add_employee();
             ae.setSize(700,400);
             ae.setVisible(true);
+            dispose();
+        }
+        else{
+            Edit_employee e1 = new Edit_employee();
+            e1.setSize(700, 500);
+            e1.setVisible(true);
             dispose();
         }
     }

@@ -4,6 +4,7 @@ public class Database {
     private static final String username = "postgres";
     private static final String password = "Rinki12";
     public Connection con;
+    public Statement stm;
     public Database(){
         try{
             Class.forName("org.postgresql.Driver");
@@ -12,6 +13,7 @@ public class Database {
         }
         try {
             con = DriverManager.getConnection(url, username, password);
+            stm = con.createStatement();
 
         } catch (SQLException e) {
             System.out.println(e);

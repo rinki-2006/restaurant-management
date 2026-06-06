@@ -5,9 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class add_employee extends JFrame implements ActionListener {
-    private static final String url = "jdbc:postgresql://localhost:5432/mydb";
-    private static final String username = "postgres";
-    private static final String password = "Rinki12";
+
     JLabel l1,l2,l3,l4,l5,l6,l7, l8;
     JButton b1, b2;
     JTextField t1, t2, t3, t4, t5, t6;

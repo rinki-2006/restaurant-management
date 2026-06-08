@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class employee_login extends JFrame implements ActionListener {
     JLabel l1,l2, l3;
@@ -52,14 +55,38 @@ public class employee_login extends JFrame implements ActionListener {
         setLayout(new BorderLayout(10,10));
         add(p1, BorderLayout.NORTH);
         add(background, BorderLayout.CENTER);
-
+        b1.addActionListener(this);
         b2.addActionListener(this);
     }
     public void actionPerformed(ActionEvent e){
-
-        indexpage index = new indexpage();
-        index.setSize(500,500);
-        index.setVisible(true);
+        if(e.getSource() == b1){
+            Database d = new Database();
+            String user = tf.getText();
+            String pass = tf1.getText();
+            String query = "Select * from restaurant where username = ? and password = ?";
+            try{
+            PreparedStatement ps = d.con.prepareStatement(query);
+            ps.setString(1,user);
+            ps.setString(2, pass);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Login successfull");
+                home_page h = new home_page();
+                h.setSize(900,900);
+                h.setVisible(true);
+                dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Incorrect username or password");
+            }
+        } catch (SQLException ex) {}
+            }
+        else {
+            indexpage index = new indexpage();
+            index.setSize(500, 500);
+            index.setVisible(true);
+            dispose();
+        }
     }
     public static void main(String[] args) {
         employee_login e = new employee_login();

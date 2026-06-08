@@ -2,7 +2,7 @@ import java.sql.*;
 public class Database {
     private static final String url = "jdbc:postgresql://localhost:5432/mydb";
     private static final String username = "postgres";
-    private static final String password = "your password";
+    private static final String password = "Rinki12";
     public Connection con;
     public Statement stm;
     public Database(){

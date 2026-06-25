@@ -40,6 +40,8 @@ public class admin_login extends JFrame implements ActionListener {
         add(l2, BorderLayout.CENTER);
         b1.addActionListener(this);
         b2.addActionListener(this);
+        b3.addActionListener(this);
+        b4.addActionListener(this);
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == b1){
@@ -48,10 +50,22 @@ public class admin_login extends JFrame implements ActionListener {
             ae.setVisible(true);
             dispose();
         }
-        else{
+        else if(e.getSource() == b2){
             Edit_employee e1 = new Edit_employee();
             e1.setSize(700, 500);
             e1.setVisible(true);
+            dispose();
+        }
+        else if(e.getSource() == b3){
+            delete_employees d = new delete_employees();
+            d.setSize(950,600);
+            d.setVisible(true);
+            dispose();
+        }
+        else{
+            indexpage i = new indexpage();
+            i.setVisible(true);
+            i.setSize(800,500);
             dispose();
         }
     }

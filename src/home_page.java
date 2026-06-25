@@ -1,9 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class home_page extends JFrame {
-    JMenu Menuitem, manageorder, bill, about;
-    JMenuItem add, delete, create, update, cancel;
+public class home_page extends JFrame implements ActionListener {
+    JMenu Menuitem, manageorder, bill, about, cancel;
+    JMenuItem add, delete, create, update, logout;
     JMenuBar mb;
     JLabel l1;
     home_page(){
@@ -12,27 +14,30 @@ public class home_page extends JFrame {
         delete = new JMenuItem("Delete Item");
         create = new JMenuItem("Create Item");
         update = new JMenuItem("Update Item");
-        cancel = new JMenuItem("Cancel Item");
 
         Menuitem =new JMenu("Menu Item");
         Menuitem.add(add);
         Menuitem.add(delete);
 
-
         manageorder = new JMenu("Manage Order");
         manageorder.add(create);
         manageorder.add(update);
-        manageorder.add(cancel);
 
         bill = new JMenu("Bill");
         about = new JMenu("About");
+        cancel = new JMenu("Cancel");
+        logout = new JMenuItem("logout");
+        cancel.add(logout);
+
+
 
         mb = new JMenuBar();
         mb.add(Menuitem);
         mb.add(manageorder);
         mb.add(bill);
         mb.add(about);
-        mb.setBackground(Color.BLACK);
+        mb.add(cancel);
+        mb.setBackground(Color.RED);
         mb.setForeground(Color.yellow);
 
         setJMenuBar(mb);
@@ -44,6 +49,31 @@ public class home_page extends JFrame {
         add(l1);
         setLayout(new FlowLayout());
 
+        add.addActionListener(this);
+        delete.addActionListener(this);
+        logout.addActionListener(this);
+
+    }
+    public void actionPerformed(ActionEvent e){
+    if(e.getSource() == add){
+        add_item a = new add_item();
+        a.setVisible(true);
+        a.setSize(950,600);
+        dispose();
+    }
+    else if(e.getSource() == logout){
+        employee_login el = new employee_login();
+        el.setVisible(true);
+        el.setSize(500,250);
+        dispose();
+
+    }
+    else{
+        delete_item d = new delete_item();
+        d.setVisible(true);
+        d.setSize(950,600);
+        dispose();
+    }
     }
     public static void main(String[] args) {
         home_page h = new home_page();

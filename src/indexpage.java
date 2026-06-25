@@ -77,7 +77,7 @@ public class indexpage extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         indexpage i = new indexpage();
-        i.setSize(500,500);
+        i.setSize(800,500);
         i.setVisible(true);
         i.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
